@@ -1,5 +1,6 @@
 {
-  "watch": ["./**/*.go"],
+  "watch": ["./"],
+  "ext": "go",
   "exec": "go run main.go",
   "signal": "SIGTERM"
 }

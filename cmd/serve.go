@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"fmt"
 	"go-blog/pkg/config"
+	"go-blog/pkg/routing"
 	"net/http"
 
 	"github.com/spf13/cobra"
@@ -25,16 +25,18 @@ var serveCmd = &cobra.Command{
 }
 
 func Serve() {
-	// configs := configSet()
 	config.Set()
-	configs := config.Get()
 
-	r := gin.Default()
+	routing.Init()
+	r := routing.GetRouter()
+
+	// r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message":  "pong",
 			"app name": viper.Get("App.name"),
 		})
 	})
-	r.Run(fmt.Sprintf("%s:%s", configs.Server.Host, configs.Server.Port)) // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+	routing.Serve()
 }
