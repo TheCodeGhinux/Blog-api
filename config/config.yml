@@ -1,0 +1,10 @@
+app:
+  name: "Codeghinux's Golang Gin Blog"
+
+server:
+  host: 'localhost' 
+  port: 8080
+
+
+# To run the server
+# nodemon --watch './**/*.go' --signal SIGTERM --exec 'go' run main.go                            
